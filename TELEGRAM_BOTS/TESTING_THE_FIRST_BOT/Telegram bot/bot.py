@@ -1,13 +1,14 @@
 import requests
+import random
+import telebot
+from telebot.types import Message
 
 TOKEN = '1379710116:AAG9BmigUQlgZKnQ3_JEWqKo--7HbbiF1O0'
-MAIN_URL=f'https://api.telegram.org/bot{TOKEN}'
 
-payload={
-    'chat_id':158404626,
-    "text":"Salam aleikum, brat",
-    'reply_to_message_id': 2
-}
+bot=telebot.TeleBot(TOKEN)
 
-r = requests.post(f"{MAIN_URL}/sendMessage", data=payload)
-print (r.json())
+@bot.message_handler(content_types=["text"]) #Бот ждет сообщение и если происходит событие - текст, он выполняет функцию
+def echo_digits(message:Message):
+    bot.reply_to(message,str(random.randint(0,100)))
+
+bot.polling(timeout=60)
