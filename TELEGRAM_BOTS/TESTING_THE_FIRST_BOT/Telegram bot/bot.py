@@ -13,10 +13,17 @@ bot=telebot.TeleBot(TOKEN)
 
 USERS=set()  # Юзаем множество вместо словаря 
 
-@bot.message_handler(commands=["start",'help'])
+@bot.message_handler(commands=["start",'info', "weather"])
 def commands_and_handler(message:Message):
-    bot.reply_to(message, "AYE")
-
+    if message.text == "/start":
+        bot.reply_to(message, "AYE")
+    elif message.text == "/info":
+        bot.reply_to(message,"Hello ! My name is Dan and here is my inst - https://www.instagram.com/master_sniffer/ \nGitHub - https://github.com/Master-sniffer \n See ya' later !")
+    elif message.text == "/weather":
+        bot.send_message(message.chat.id , "That's great that u want to change smth in ur life. Tell me the name of the city !")
+        @bot.message_handler(content_types=["text"])
+        def weather (message:Message):
+            print ("hi !")
 
 @bot.edited_message_handler(content_types=["text"])
 @bot.message_handler(content_types=["text"]) #Бот ждет сообщение и если происходит событие - текст, он выполняет функцию
@@ -24,8 +31,8 @@ def echo_digits(message:Message):
 
     markup = types.ReplyKeyboardMarkup()
     itembtna = types.KeyboardButton('/start')
-    itembtnv = types.KeyboardButton('v')
-    itembtnz = types.KeyboardButton('z')
+    itembtnv = types.KeyboardButton('/weather')
+    itembtnz = types.KeyboardButton('/info')
     #itembtnc = types.KeyboardButton('c')
     #itembtnd = types.KeyboardButton('d')
     #itembtne = types.KeyboardButton('e')
@@ -37,8 +44,6 @@ def echo_digits(message:Message):
         info=json.load(f)
         print ("opening data...") #Лоигрование, что запись в файл идет
     print (info)
-
-
 
     reply=str(random.randint(0,100))
     if 'alexa' in message.text:
