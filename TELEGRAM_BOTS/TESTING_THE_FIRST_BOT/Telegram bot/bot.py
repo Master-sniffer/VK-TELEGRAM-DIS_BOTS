@@ -61,20 +61,17 @@ def commands_and_handler(message:Message):
     
     elif message.text=="/random_doggo":
         bot.send_message(message.chat.id, "Hey, hon. Catch pup !\n")
-        r=requests.get('https://some-random-api.ml/animal/:dog')
-        #rok=r.json()
+        r=requests.get('https://dog.ceo/api/breeds/image/random')
+        rok=r.json()
         print (r)
-        #pica=rok['image']
-        #fact=rok['fact']
-        #print (fact)
-        # response = requests.get(pica)
+        pica=rok['message']
+        response = requests.get(pica)
 
-        # file = open("random_doggo.jpg", "wb")
-        # file.write(response.content)
-        # file.close()
-        # photo = open('random_doggo.jpg', 'rb')
-        # bot.send_photo(message.chat.id, photo)
-        #bot.send_message(message.chat.id, f"Well, this lil creature got one fun fact - {fact}")
+        file = open("random_doggo.jpg", "wb")
+        file.write(response.content)
+        file.close()
+        photo = open('random_doggo.jpg', 'rb')
+        bot.send_photo(message.chat.id, photo)
 
 
 
