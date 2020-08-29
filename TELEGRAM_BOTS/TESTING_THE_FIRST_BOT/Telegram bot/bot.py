@@ -17,10 +17,10 @@ USERS=set()  # Юзаем множество вместо словаря
 @bot.message_handler(commands=["music",'meme_template', "random_meme",'random_doggo','info'])
 def commands_and_handler(message:Message):
     if message.text == "/music":
-        bot.reply_to(message, "Hey, bro, listen to my music")
+        bot.reply_to(message, "Hey, bro, listen to my music\nYou'll see now a random track")
         music_i=["Heshi.mp3","bass-drive.mp3",'wait.mp3','is it you.mp3','The world which you cannot change.mp3','psy_1.mp3','Bass drive_1.mp3','silence.mp3']
-        for i in music_i:
-            bot.send_audio(message.chat.id, audio=open(f'music/{i}', 'rb'))
+        i=random.choice(music_i)
+        bot.send_audio(message.chat.id, audio=open(f'music/{i}', 'rb'))
         bot.send_message(message.chat.id,"Like it ?\nHit the link in info")
 
 
@@ -92,26 +92,26 @@ def echo_digits(message:Message):
     markup.row(itembtna, itembtnv )
     markup.row(itembtnk,itembtng )
     markup.row(itembtnz)
-    bot.send_message(message.chat.id,"Choose what you want to do !", reply_markup=markup)
+    bot.send_message(message.chat.id,"Choose what you want to do !\nThere are some squares on the bottom of the screen. Use the, to navigate\n\nIf you write something, bot will reply to u with a random number", reply_markup=markup)
 
     with open ("saves.json" ) as f: #Открытие файла  
         info=json.load(f)
         print ("opening data...") #Лоигрование, что запись в файл идет
     print (info)
 
-    # reply=str(random.randint(0,100))
+    reply=str(random.randint(0,100))
     # if 'alexa' in message.text:
     #     bot.reply_to(message,str("Pishov Nahui"))
     #     return 
-    # if str (message.from_user.id) in info:
-    #     reply+=f" {message.from_user.first_name} thats your new number" 
-    # else:
-    #     with open ("saves.json", "w") as f:
-    #         print ("saving data...")
-    #         data= str(info) + str(message.from_user.id)+","
-    #         json.dump (data, f)
-    #         print (data)
-    # bot.reply_to(message,reply)
+    if str (message.from_user.id) in info:
+        reply+=f" {message.from_user.first_name} thats your new number" 
+    else:
+        with open ("saves.json", "w") as f:
+            print ("saving data...")
+            data= str(info) + str(message.from_user.id)+","
+            json.dump (data, f)
+            print (data)
+    bot.reply_to(message,reply)
 
 
 @bot.message_handler(content_types=["sticker"])
@@ -122,4 +122,5 @@ def stickos (message:Message):
 
 
 
-bot.polling(timeout=60)
+#bot.polling(timeout=0.1)
+bot.polling(none_stop=True)
