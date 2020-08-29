@@ -13,25 +13,47 @@ bot=telebot.TeleBot(TOKEN)
 
 USERS=set()  # Юзаем множество вместо словаря 
 
-@bot.message_handler(commands=["start",'info', "weather"])
+
+@bot.message_handler(commands=["music",'info', "meme"])
 def commands_and_handler(message:Message):
-    if message.text == "/start":
-        bot.reply_to(message, "AYE")
+    if message.text == "/music":
+        bot.reply_to(message, "Hey, bro, listen to my music")
+        music_i=["фвффвфв.mp3","ыыыы.mp3",'wait.mp3','is it you.mp3','ьфлы.mp3','ифи.mp3','Bass drive_1.mp3','silence.mp3']
+        if (update.Message.ReplyToMessage.Text.Contains(music_i)):
+
+
+
     elif message.text == "/info":
         bot.reply_to(message,"Hello ! My name is Dan and here is my inst - https://www.instagram.com/master_sniffer/ \nGitHub - https://github.com/Master-sniffer \n See ya' later !")
-    elif message.text == "/weather":
-        bot.send_message(message.chat.id , "That's great that u want to change smth in ur life. Tell me the name of the city !")
-        @bot.message_handler(content_types=["text"])
-        def weather (message:Message):
-            print ("hi !")
+    elif message.text == "/meme":
+        bot.send_message(message.chat.id , "Catch your meme !")
+        url = 'https://api.imgflip.com/get_memes'
+        response = requests.get(url)
+        d=response.json()
+        data=d['data']['memes']
+        pics=[]
+        for i in data:
+            print (i['url'])
+            pics.append(i['url'])
+
+        i=random.choice(pics)
+        response = requests.get(i)
+
+        file = open("sample_image.jpg", "wb")
+        file.write(response.content)
+        file.close()
+        photo = open('sample_image.jpg', 'rb')
+        bot.send_photo(message.chat.id, photo)
+
+
 
 @bot.edited_message_handler(content_types=["text"])
 @bot.message_handler(content_types=["text"]) #Бот ждет сообщение и если происходит событие - текст, он выполняет функцию
 def echo_digits(message:Message):
 
     markup = types.ReplyKeyboardMarkup()
-    itembtna = types.KeyboardButton('/start')
-    itembtnv = types.KeyboardButton('/weather')
+    itembtna = types.KeyboardButton('/music')
+    itembtnv = types.KeyboardButton('/meme')
     itembtnz = types.KeyboardButton('/info')
     #itembtnc = types.KeyboardButton('c')
     #itembtnd = types.KeyboardButton('d')
