@@ -19,7 +19,10 @@ def commands_and_handler(message:Message):
     if message.text == "/music":
         bot.reply_to(message, "Hey, bro, listen to my music")
         music_i=["фвффвфв.mp3","ыыыы.mp3",'wait.mp3','is it you.mp3','ьфлы.mp3','ифи.mp3','Bass drive_1.mp3','silence.mp3']
-        if (update.Message.ReplyToMessage.Text.Contains(music_i)):
+        for i in music_i:
+            bot.send_audio(message.chat.id, audio=open(f'music/{i}', 'rb'))
+        bot.send_message(message.chat.id,"Like it ?\nHit the link in info")
+
 
 
 
