@@ -14,21 +14,19 @@ bot=telebot.TeleBot(TOKEN)
 USERS=set()  # Юзаем множество вместо словаря 
 
 
-@bot.message_handler(commands=["music",'info', "meme"])
+@bot.message_handler(commands=["music",'meme_template', "random_meme",'random_doggo','info'])
 def commands_and_handler(message:Message):
     if message.text == "/music":
         bot.reply_to(message, "Hey, bro, listen to my music")
-        music_i=["фвффвфв.mp3","ыыыы.mp3",'wait.mp3','is it you.mp3','ьфлы.mp3','ифи.mp3','Bass drive_1.mp3','silence.mp3']
+        music_i=["Heshi.mp3","bass-drive.mp3",'wait.mp3','is it you.mp3','The world which you cannot change.mp3','psy_1.mp3','Bass drive_1.mp3','silence.mp3']
         for i in music_i:
             bot.send_audio(message.chat.id, audio=open(f'music/{i}', 'rb'))
         bot.send_message(message.chat.id,"Like it ?\nHit the link in info")
 
 
-
-
     elif message.text == "/info":
         bot.reply_to(message,"Hello ! My name is Dan and here is my inst - https://www.instagram.com/master_sniffer/ \nGitHub - https://github.com/Master-sniffer \n See ya' later !")
-    elif message.text == "/meme":
+    elif message.text == "/meme_template":
         bot.send_message(message.chat.id , "Catch your meme !")
         url = 'https://api.imgflip.com/get_memes'
         response = requests.get(url)
@@ -48,6 +46,37 @@ def commands_and_handler(message:Message):
         photo = open('sample_image.jpg', 'rb')
         bot.send_photo(message.chat.id, photo)
 
+    elif message.text=="/random_meme":
+        bot.send_message(message.chat.id, "Eo, brother. Catch one random meme !\n")
+        r=requests.get('https://some-random-api.ml/meme')
+        rok=r.json()
+        pica=rok['image']
+        response = requests.get(pica)
+
+        file = open("random_image.jpg", "wb")
+        file.write(response.content)
+        file.close()
+        photo = open('random_image.jpg', 'rb')
+        bot.send_photo(message.chat.id, photo)
+    
+    elif message.text=="/random_doggo":
+        bot.send_message(message.chat.id, "Hey, hon. Catch pup !\n")
+        r=requests.get('https://some-random-api.ml/animal/:dog')
+        #rok=r.json()
+        print (r)
+        #pica=rok['image']
+        #fact=rok['fact']
+        #print (fact)
+        # response = requests.get(pica)
+
+        # file = open("random_doggo.jpg", "wb")
+        # file.write(response.content)
+        # file.close()
+        # photo = open('random_doggo.jpg', 'rb')
+        # bot.send_photo(message.chat.id, photo)
+        #bot.send_message(message.chat.id, f"Well, this lil creature got one fun fact - {fact}")
+
+
 
 
 @bot.edited_message_handler(content_types=["text"])
@@ -56,12 +85,14 @@ def echo_digits(message:Message):
 
     markup = types.ReplyKeyboardMarkup()
     itembtna = types.KeyboardButton('/music')
-    itembtnv = types.KeyboardButton('/meme')
+    itembtnv = types.KeyboardButton('/meme_template')
+    itembtnk = types.KeyboardButton('/random_meme')
+    itembtng = types.KeyboardButton('/random_doggo')    
     itembtnz = types.KeyboardButton('/info')
     #itembtnc = types.KeyboardButton('c')
     #itembtnd = types.KeyboardButton('d')
     #itembtne = types.KeyboardButton('e')
-    markup.row(itembtna, itembtnv , itembtnz)
+    markup.row(itembtna, itembtnv , itembtnk,itembtng, itembtnz)
     #markup.row(itembtnc, itembtnd, itembtne)
     bot.send_message(message.chat.id,"Choose what you want to do !", reply_markup=markup)
 
