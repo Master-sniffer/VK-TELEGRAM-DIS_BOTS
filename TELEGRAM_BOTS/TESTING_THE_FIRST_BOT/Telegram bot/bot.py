@@ -6,7 +6,7 @@ import telebot
 from telebot.types import Message
 from telebot import types
 
-TOKEN = '1379710116:AAG9BmigUQlgZKnQ3_JEWqKo--7HbbiF1O0'
+TOKEN = ''
 STICKER_ID='CAACAgIAAxkBAAN1X0aeJkafPIr1haxKJEvF1nRDPToAAsEAA2sLFBR5KCryovaX0xsE' # найдите стикос по души и отправляйте его :)
 
 bot=telebot.TeleBot(TOKEN)
