@@ -122,5 +122,8 @@ def stickos (message:Message):
 
 
 
-#bot.polling(timeout=0.1)
+# bot.polling(timeout=0.1)
+
+"""ЗДЕСЬ РАСПОЛОЖЕНА ПАНЕЛЬ УПРАВЛЕНИЯ ЗАПУСКОМ БОТА """
+#ОТВЕЧАЕТ ЗА ЗАПУСК 
 bot.polling(none_stop=True)
