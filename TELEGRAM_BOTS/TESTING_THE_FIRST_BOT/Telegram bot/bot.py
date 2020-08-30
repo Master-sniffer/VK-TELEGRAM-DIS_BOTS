@@ -6,8 +6,8 @@ import telebot
 from telebot.types import Message
 from telebot import types
 
-TOKEN = ''
-STICKER_ID='CAACAgIAAxkBAAN1X0aeJkafPIr1haxKJEvF1nRDPToAAsEAA2sLFBR5KCryovaX0xsE' # найдите стикос по души и отправляйте его :)
+TOKEN = '1379710116:AAG9BmigUQlgZKnQ3_JEWqKo--7HbbiF1O0'
+STICKER_ID=['CAACAgIAAxkBAAIE9V9LoyCFM93_q7nZN72rVKPBgq2bAAKgAANrCxQU3fjzlwNRf_gbBA','CAACAgIAAxkBAAIE7V9LonfNKQgaGLRhRGbspoJMZG5nAAK9AANrCxQUKiCIDDep1_cbBA'] # найдите стикос по души и отправляйте его :)
 
 bot=telebot.TeleBot(TOKEN)
 
@@ -116,10 +116,39 @@ def echo_digits(message:Message):
 
 @bot.message_handler(content_types=["sticker"])
 def stickos (message:Message):
-    bot.send_sticker(message.chat.id, STICKER_ID)
+    stic=random.choice(STICKER_ID)
+    bot.send_sticker(message.chat.id, stic)
     print (message)
-
-
+    print ("\n\n\nHELLO\n\n\n")
+    sticka = message.json['sticker']['file_id']
+    with open ('sticks.json') as f:
+        data=json.load(f)
+        if str(sticka)+',' in data:
+            print ("\n\nSticka is there already\n\n")
+            pass
+        else:
+            print ("\n\nSticka is being saved\n\n")
+            with open ('sticks.json','w') as fa:
+                data+=sticka
+                data+=","
+                json.dump(data, fa)
+    stickk=data
+    lis=list(stickk)
+    data=[]
+    nus=len(lis)
+    i=0
+    word=''
+    while i != nus:
+        if lis[i]!=',':
+            word+=str(lis[i])
+        elif lis[i]==",":
+            data.append(word)
+            word=''
+        else:
+            word+=lis[i]
+        i+=1
+    print (data)        
+    bot.send_sticker(message.chat.id, random.choice(data))
 
 
 # bot.polling(timeout=0.1)
