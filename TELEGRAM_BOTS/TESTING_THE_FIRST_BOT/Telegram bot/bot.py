@@ -1,10 +1,17 @@
 import requests
 import json
 import random
+
+import sys
+import os
+
 import pickle
 import telebot
+import schedule
 from telebot.types import Message
 from telebot import types
+import time
+from datetime import date, datetime
 
 TOKEN = '1379710116:AAG9BmigUQlgZKnQ3_JEWqKo--7HbbiF1O0'
 STICKER_ID=['CAACAgIAAxkBAAIE9V9LoyCFM93_q7nZN72rVKPBgq2bAAKgAANrCxQU3fjzlwNRf_gbBA','CAACAgIAAxkBAAIE7V9LonfNKQgaGLRhRGbspoJMZG5nAAK9AANrCxQUKiCIDDep1_cbBA'] # найдите стикос по души и отправляйте его :)
@@ -74,6 +81,15 @@ def commands_and_handler(message:Message):
         bot.send_photo(message.chat.id, photo)
 
 
+
+def job(): #
+    print ("HELLO WORLD")
+
+schedule.every(10).seconds.do(job) #
+
+while True: # подрубаем, чтобы постоянно работал и слушал сообщения
+    schedule.run_pending() # просто подрубает работу библиотеки schedule
+    time.sleep(1) # Решается скок по времени идет сон бота (чтоб сильно не напрягался)000)0)))
 
 
 @bot.edited_message_handler(content_types=["text"])
