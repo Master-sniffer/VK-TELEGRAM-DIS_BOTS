@@ -13,7 +13,7 @@ from telebot import types
 import time
 from datetime import date, datetime
 
-TOKEN = '1379710116:AAG9BmigUQlgZKnQ3_JEWqKo--7HbbiF1O0'
+TOKEN = ''
 STICKER_ID=['CAACAgIAAxkBAAIE9V9LoyCFM93_q7nZN72rVKPBgq2bAAKgAANrCxQU3fjzlwNRf_gbBA','CAACAgIAAxkBAAIE7V9LonfNKQgaGLRhRGbspoJMZG5nAAK9AANrCxQUKiCIDDep1_cbBA'] # найдите стикос по души и отправляйте его :)
 
 bot=telebot.TeleBot(TOKEN)
