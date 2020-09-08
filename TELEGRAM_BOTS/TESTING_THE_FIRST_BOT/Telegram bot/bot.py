@@ -13,7 +13,7 @@ from telebot import types
 import time
 from datetime import date, datetime
 
-TOKEN = ''
+TOKEN = '1379710116:AAGP6pQ2IQcBkxQySUNnvQkku0LctFPGVj8'
 STICKER_ID=['CAACAgIAAxkBAAIE9V9LoyCFM93_q7nZN72rVKPBgq2bAAKgAANrCxQU3fjzlwNRf_gbBA','CAACAgIAAxkBAAIE7V9LonfNKQgaGLRhRGbspoJMZG5nAAK9AANrCxQUKiCIDDep1_cbBA'] # найдите стикос по души и отправляйте его :)
 
 bot=telebot.TeleBot(TOKEN)
@@ -21,7 +21,7 @@ bot=telebot.TeleBot(TOKEN)
 USERS=set()  # Юзаем множество вместо словаря 
 
 
-@bot.message_handler(commands=["music",'meme_template', "random_meme",'random_doggo','info'])
+@bot.message_handler(commands=["music",'meme_template', "random_meme",'random_doggo','info','make_meme'])
 def commands_and_handler(message:Message):
     if message.text == "/music":
         bot.reply_to(message, "Hey, bro, listen to my music\nYou'll see now a random track")
@@ -79,17 +79,23 @@ def commands_and_handler(message:Message):
         file.close()
         photo = open('random_doggo.jpg', 'rb')
         bot.send_photo(message.chat.id, photo)
+    
+    elif message.text=='/make_meme':
+        bot.send_message(message.chat.id, "Hey-yo !\nLets make some memes !")
+        r=requests.get('https://api.imgflip.com/caption_image')
+        print (r)
 
 
 
 def job(): #
     print ("HELLO WORLD")
+    pass
 
 schedule.every(10).seconds.do(job) #
 
-while True: # подрубаем, чтобы постоянно работал и слушал сообщения
-    schedule.run_pending() # просто подрубает работу библиотеки schedule
-    time.sleep(1) # Решается скок по времени идет сон бота (чтоб сильно не напрягался)000)0)))
+#while True: # подрубаем, чтобы постоянно работал и слушал сообщения
+    #schedule.run_pending() # просто подрубает работу библиотеки schedule
+    #time.sleep(1) # Решается скок по времени идет сон бота (чтоб сильно не напрягался)000)0)))
 
 
 @bot.edited_message_handler(content_types=["text"])
@@ -102,12 +108,13 @@ def echo_digits(message:Message):
     itembtnk = types.KeyboardButton('/random_meme')
     itembtng = types.KeyboardButton('/random_doggo')    
     itembtnz = types.KeyboardButton('/info')
+    itembtnza = types.KeyboardButton('/make_meme')
     #itembtnc = types.KeyboardButton('c')
     #itembtnd = types.KeyboardButton('d')
     #itembtne = types.KeyboardButton('e')
     markup.row(itembtna, itembtnv )
     markup.row(itembtnk,itembtng )
-    markup.row(itembtnz)
+    markup.row(itembtnz , itembtnza)
     bot.send_message(message.chat.id,"Choose what you want to do !\nThere are some squares on the bottom of the screen. Use the, to navigate\n\nIf you write something, bot will reply to u with a random number", reply_markup=markup)
 
     with open ("saves.json" ) as f: #Открытие файла  
@@ -167,7 +174,7 @@ def stickos (message:Message):
     bot.send_sticker(message.chat.id, random.choice(data))
 
 
-# bot.polling(timeout=0.1)
+#bot.polling(timeout=0.1)
 
 """ЗДЕСЬ РАСПОЛОЖЕНА ПАНЕЛЬ УПРАВЛЕНИЯ ЗАПУСКОМ БОТА """
 #ОТВЕЧАЕТ ЗА ЗАПУСК 
