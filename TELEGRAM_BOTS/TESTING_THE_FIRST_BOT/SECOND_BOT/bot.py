@@ -48,9 +48,16 @@ def echo_digits(message:Message):
         bot.send_audio(message, "Max-Richter-November.mp3")
     
     elif message.text =="81":
-        
+        bot.send_message(message, "just try to remember what u say and the answer will be there\n")
+        bot.send_document(message, "deepAF.rar")
+    
+    elif message.text=="онлию":
+        bot.send_message (message, "Ты хорошо постарался и теперь тебя ждет награда, друг мой\nДержи\nhttps://vk.com/finuniversity\n\nбыло весело, удачи тебе")
+    
+    else:
+        bot.send_message(message,"Want to start the game ? Enter\ttask_1\n\nneed help ?\nwrite me\nhttps://vk.com/masster_sniffer")
 
-
+    
 
 """ЗДЕСЬ РАСПОЛОЖЕНА ПАНЕЛЬ УПРАВЛЕНИЯ ЗАПУСКОМ БОТА """
 #ОТВЕЧАЕТ ЗА ЗАПУСК 
