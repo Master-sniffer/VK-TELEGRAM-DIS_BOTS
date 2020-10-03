@@ -13,7 +13,7 @@ from telebot import types
 import time
 from datetime import date, datetime
 
-TOKEN = ''
+TOKEN = '1227009170:AAEidIKoX_oC063wqGntd-8cSflGGncuezQ'
 
 bot=telebot.TeleBot(TOKEN) 
 
@@ -62,7 +62,20 @@ def echo_digits(message:Message):
     else:
         bot.send_message(message.chat.id,"Want to start the game ? Enter\ttask_1\n\nneed help ?\nwrite me\nhttps://vk.com/masster_sniffer")
 
-    
+    #print (message.from_user.username,"\n\n\n") # для получения ника
+    #print (message.chat.id) #для получения ID
+
+    fil = "gte\logs.json"
+    with open (fil) as f: #Открытие файла  
+        info=json.load(f)
+        print ("opening data...") #Лоигрование, что запись в файл идет
+
+    if message.from_user.username in info:
+        print()
+    else:
+        with open (fil, "w") as f:
+            data=str(info) , message.from_user.username+","
+            json.dump(data,f)
 
 """ЗДЕСЬ РАСПОЛОЖЕНА ПАНЕЛЬ УПРАВЛЕНИЯ ЗАПУСКОМ БОТА """
 #ОТВЕЧАЕТ ЗА ЗАПУСК 
