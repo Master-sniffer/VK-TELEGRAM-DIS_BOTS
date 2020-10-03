@@ -14,168 +14,68 @@ import time
 from datetime import date, datetime
 
 TOKEN = ''
-STICKER_ID=['CAACAgIAAxkBAAIE9V9LoyCFM93_q7nZN72rVKPBgq2bAAKgAANrCxQU3fjzlwNRf_gbBA','CAACAgIAAxkBAAIE7V9LonfNKQgaGLRhRGbspoJMZG5nAAK9AANrCxQUKiCIDDep1_cbBA'] # найдите стикос по души и отправляйте его :)
 
-bot=telebot.TeleBot(TOKEN)
+bot=telebot.TeleBot(TOKEN) 
 
 USERS=set()  # Юзаем множество вместо словаря 
-
-
-@bot.message_handler(commands=["music",'meme_template', "random_meme",'random_doggo','info','make_meme'])
-def commands_and_handler(message:Message):
-    if message.text == "/music":
-        bot.reply_to(message, "Hey, bro, listen to my music\nYou'll see now a random track")
-        music_i=["Heshi.mp3","bass-drive.mp3",'wait.mp3','is it you.mp3','The world which you cannot change.mp3','psy_1.mp3','Bass drive_1.mp3','silence.mp3']
-        i=random.choice(music_i)
-        bot.send_audio(message.chat.id, audio=open(f'music/{i}', 'rb'))
-        bot.send_message(message.chat.id,"Like it ?\nHit the link in info")
-
-
-    elif message.text == "/info":
-        bot.reply_to(message,"Hello ! My name is Dan and here is my inst - https://www.instagram.com/master_sniffer/ \nGitHub - https://github.com/Master-sniffer \n See ya' later !")
-    elif message.text == "/meme_template":
-        bot.send_message(message.chat.id , "Catch your meme !")
-        url = 'https://api.imgflip.com/get_memes'
-        response = requests.get(url)
-        d=response.json()
-        data=d['data']['memes']
-        pics=[]
-        for i in data:
-            print (i['url'])
-            pics.append(i['url'])
-
-        i=random.choice(pics)
-        response = requests.get(i)
-
-        file = open("sample_image.jpg", "wb")
-        file.write(response.content)
-        file.close()
-        photo = open('sample_image.jpg', 'rb')
-        bot.send_photo(message.chat.id, photo)
-
-    elif message.text=="/random_meme":
-        bot.send_message(message.chat.id, "Eo, brother. Catch one random meme !\n")
-        r=requests.get('https://some-random-api.ml/meme')
-        rok=r.json()
-        pica=rok['image']
-        response = requests.get(pica)
-
-        file = open("random_image.jpg", "wb")
-        file.write(response.content)
-        file.close()
-        photo = open('random_image.jpg', 'rb')
-        bot.send_photo(message.chat.id, photo)
-    
-    elif message.text=="/random_doggo":
-        bot.send_message(message.chat.id, "Hey, hon. Catch pup !\n")
-        r=requests.get('https://dog.ceo/api/breeds/image/random')
-        rok=r.json()
-        print (r)
-        pica=rok['message']
-        response = requests.get(pica)
-
-        file = open("random_doggo.jpg", "wb")
-        file.write(response.content)
-        file.close()
-        photo = open('random_doggo.jpg', 'rb')
-        bot.send_photo(message.chat.id, photo)
-    
-    # elif message.text=='/make_meme':
-    #     bot.send_message(message.chat.id, "Hey-yo !\nLets make some memes !")
-    #     r=requests.get('https://api.imgflip.com/caption_image')
-    #     print (r.json())
-
-
-
-def job(): #
-    print ("HELLO WORLD")
-    pass
-
-schedule.every(10).seconds.do(job) #
-
-#while True: # подрубаем, чтобы постоянно работал и слушал сообщения
-    #schedule.run_pending() # просто подрубает работу библиотеки schedule
-    #time.sleep(1) # Решается скок по времени идет сон бота (чтоб сильно не напрягался)000)0)))
-
 
 @bot.edited_message_handler(content_types=["text"])
 @bot.message_handler(content_types=["text"]) #Бот ждет сообщение и если происходит событие - текст, он выполняет функцию
 def echo_digits(message:Message):
+    
+    #REPLY to message
+    #SEND TO message.chat.id
 
-    markup = types.ReplyKeyboardMarkup()
-    itembtna = types.KeyboardButton('/music')
-    itembtnv = types.KeyboardButton('/meme_template')
-    itembtnk = types.KeyboardButton('/random_meme')
-    itembtng = types.KeyboardButton('/random_doggo')    
-    itembtnz = types.KeyboardButton('/info')
-    #itembtnza = types.KeyboardButton('/make_meme')
-    #itembtnc = types.KeyboardButton('c')
-    #itembtnd = types.KeyboardButton('d')
-    #itembtne = types.KeyboardButton('e')
-    markup.row(itembtna, itembtnv )
-    markup.row(itembtnk,itembtng )
-    markup.row(itembtnz)
-    #markup.row(itembtnz , itembtnza)
-    bot.send_message(message.chat.id,"Choose what you want to do !\nThere are some squares on the bottom of the screen. Use the, to navigate\n\nIf you write something, bot will reply to u with a random number", reply_markup=markup)
+    if 'task_1' in message.text:
+        bot.reply_to(message,str("some people say that the problem is just in contrast ")) 
+        bot.send_photo (message.chat.id, open('gte\\tasks\\first_Task.png', 'rb'))
+        print ("\nDONE\n")
 
-    with open ("saves.json" ) as f: #Открытие файла  
+    elif 'H2020452178' in message.text:
+        bot.send_message (message.chat.id, "I know that you've done a lot\nbut it is just the \nb\ne\ng\ni\nn\nn\ni\nn\ng\n\nMy momma loves say'n that different languages sometimes help you to understand the whole meaning of the thing. Then AND only then u reverse the thing and get the answer\nGood luck, h@ckEr$\n\n")
+        bot.send_document(message.chat.id, open('gte\\tasks\\task_2.gif', 'rb'))
+    
+    elif 'спом' in message.text:
+        bot.send_message (message.chat.id, "Great job, brother\nRemember what u've written. Now i give an another challenge.\nLet me give u an advice\nHow high can u get when u... Chill...\n\n51.1788293\n-1.826183")
+    
+    elif '99' in message.text :
+        bot.send_message(message.chat.id, "AHAHAHAHA\n U've REALlaadlaLY DADANDANDONE IT\nCONGRATS !\n\n\n\nДыаыит фб цфбгч, эёгые ябгч ат егтфч !")
+    
+    elif 'ROT19' in message.text:
+        bot.send_message(message.chat.id, "I know that u've been doing not alone and we appreciate that, but we need persons... Leaders, not the followers. This is why, i give u an another challenge which gonna make u cry\n")
+        bot.send_message(message.chat.id, "Just, please, remember that some words in one language should be written in another one))0)0)")
+        bot.send_document(message.chat.id, open ('gte\\tasks\\task.rar', 'rb'))
+
+
+    elif 'Dont be afraid, but ur answer is...' in message.text:
+        bot.send_message(message.chat.id, "quite tricky , ain't it ?")
+        bot.send_message(message.chat.id, "tam-tam-tam\nta ka di mi\nta ka di mi\nrecognize it, man ?)\nwell, sometimes u say it faster, sometimes slower, but why...\ndamn, i dont know\n\n\n")
+        bot.send_audio(message.chat.id, open ('gte\\tasks\\Max-Richter-November.mp3', "rb"))
+    
+    elif '81' in message.text :
+        bot.send_message(message.chat.id, "just try to remember what u say and the answer will be there\n")
+        bot.send_document(message.chat.id, open ('gte\\tasks\\deepAF.rar', 'rb'))
+    
+    elif 'онлию' in message.text :
+        bot.send_message (message.chat.id, "Ты хорошо постарался и теперь тебя ждет награда, друг мой\nДержи\nhttps://vk.com/finuniversity\n\nбыло весело, удачи тебе")
+    
+    else:
+        bot.send_message(message.chat.id,"Want to start the game ? Enter\ttask_1\n\nneed help ?\nwrite me\nhttps://vk.com/masster_sniffer")
+
+    #print (message.from_user.username,"\n\n\n") # для получения ника
+    #print (message.chat.id) #для получения ID
+
+    fil = "gte\logs.json"
+    with open (fil) as f: #Открытие файла  
         info=json.load(f)
         print ("opening data...") #Лоигрование, что запись в файл идет
-    print (info)
 
-    reply=str(random.randint(0,100))
-    # if 'alexa' in message.text:
-    #     bot.reply_to(message,str("Pishov Nahui"))
-    #     return 
-    if str (message.from_user.id) in info:
-        reply+=f" {message.from_user.first_name} thats your new number" 
+    if message.from_user.username in info:
+        pass
     else:
-        with open ("saves.json", "w") as f:
-            print ("saving data...")
-            data= str(info) + str(message.from_user.id)+","
-            json.dump (data, f)
-            print (data)
-    bot.reply_to(message,reply)
-
-
-@bot.message_handler(content_types=["sticker"])
-def stickos (message:Message):
-    stic=random.choice(STICKER_ID)
-    bot.send_sticker(message.chat.id, stic)
-    print (message)
-    print ("\n\n\nHELLO\n\n\n")
-    sticka = message.json['sticker']['file_id']
-    with open ('sticks.json') as f:
-        data=json.load(f)
-        if str(sticka)+',' in data:
-            print ("\n\nSticka is there already\n\n")
-            pass
-        else:
-            print ("\n\nSticka is being saved\n\n")
-            with open ('sticks.json','w') as fa:
-                data+=sticka
-                data+=","
-                json.dump(data, fa)
-    stickk=data
-    lis=list(stickk)
-    data=[]
-    nus=len(lis)
-    i=0
-    word=''
-    while i != nus:
-        if lis[i]!=',':
-            word+=str(lis[i])
-        elif lis[i]==",":
-            data.append(word)
-            word=''
-        else:
-            word+=lis[i]
-        i+=1
-    print (data)        
-    bot.send_sticker(message.chat.id, random.choice(data))
-
-
-#bot.polling(timeout=0.1)
+        with open (fil, "w") as f:
+            data=str(info) , message.from_user.username+","
+            json.dump(data,f)
 
 """ЗДЕСЬ РАСПОЛОЖЕНА ПАНЕЛЬ УПРАВЛЕНИЯ ЗАПУСКОМ БОТА """
 #ОТВЕЧАЕТ ЗА ЗАПУСК 
