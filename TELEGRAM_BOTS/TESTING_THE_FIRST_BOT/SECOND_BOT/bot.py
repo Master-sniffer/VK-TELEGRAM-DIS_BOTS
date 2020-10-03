@@ -71,7 +71,7 @@ def echo_digits(message:Message):
         print ("opening data...") #Лоигрование, что запись в файл идет
 
     if message.from_user.username in info:
-        print()
+        pass
     else:
         with open (fil, "w") as f:
             data=str(info) , message.from_user.username+","
