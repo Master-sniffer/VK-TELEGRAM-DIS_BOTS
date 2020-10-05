@@ -52,19 +52,21 @@ def echo_digits(message:Message):
 
 
     elif 'Dont be afraid, but ur answer is...' in message.text:
-        bot.send_message(message.chat.id, "quite tricky , ain't it ?")
+        bot.send_message(message.chat.id, "quite tricky , ain't it ?") #Немног сложно, согласись ?)
         bot.send_message(message.chat.id, "tam-tam-tam\nta ka di mi\nta ka di mi\nrecognize it, man ?)\nwell, sometimes u say it faster, sometimes slower, but why...\ndamn, i dont know\n\n\n")
+        #Там-там-там\nТа ка ди ми\nТа ка ди ми\nЗнакомые слова, бро ?)\nТак-с, так-с, иногда то, что ты говоришь что-то быстрее, а иногда медленнее, но почему...\nЧерт, сам не знаю...
         bot.send_audio(message.chat.id, open ('gte\\tasks\\Max-Richter-November.mp3', "rb"))
     
     elif '81' in message.text :
         bot.send_message(message.chat.id, "just try to remember what u say and the answer will be there\n")
+        #Просто... Просто вспомни, что ты говорил и ответ будет здесь...
         bot.send_document(message.chat.id, open ('gte\\tasks\\deepAF.rar', 'rb'))
     
     elif 'онлию' in message.text :
         bot.send_message (message.chat.id, "Ты хорошо постарался и теперь тебя ждет награда, друг мой\nДержи\nhttps://vk.com/finuniversity\n\nбыло весело, удачи тебе")
     
     else:
-        bot.send_message(message.chat.id,"Want to start the game ? Enter\ttask_1\n\nneed help ?\nwrite me\nhttps://vk.com/masster_sniffer")
+        bot.send_message(message.chat.id,"Want to start the game ? Enter\ttask_1\n\nNeed help ?\nwrite me\nhttps://vk.com/masster_sniffer")
 
     #print (message.from_user.username,"\n\n\n") # для получения ника
     #print (message.chat.id) #для получения ID
