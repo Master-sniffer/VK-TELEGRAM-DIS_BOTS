@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import requests
 import json
 import random
@@ -43,7 +44,7 @@ def echo_digits(message:Message):
     
     elif 'ROT19' in message.text:
         bot.send_message(message.chat.id, "Мы знаем, что ты делал это не один и ценим это..\nНо нам нужны лидеры, а не последователи\nИменно поэтому мы начинаем следующий этап. Будет больно, готовься, ДR@ZHок_PIEРОGOK\n")
-        bot.send_message(message.chat.id, "        #Просто помни, что не всё, что ты пишешь, должно быть на одном языке...\nА может и на том же :)")
+        bot.send_message(message.chat.id, "Просто помни, что не всё, что ты пишешь, должно быть на одном языке...\nА может и на том же :)")
         bot.send_document(message.chat.id, open ('gte\\tasks\\task.rar', 'rb'))
 
 
@@ -60,7 +61,7 @@ def echo_digits(message:Message):
         bot.send_message (message.chat.id, "Ты хорошо постарался и теперь тебя ждет награда, друг мой\nДержи\nhttps://vk.com/finuniversity\n\nбыло весело, удачи тебе")
     
     elif "help" in message.text:
-        bot.send_message (message.chat.id, "Help https://vk.com/masster_sniffer or https://www.instagram.com/master_sniffer/\nother sponsors\nhttps://www.instagram.com/masha_stir/\nhttps://www.instagram.com/kras_veta/\n")
+        bot.send_message (message.chat.id, "Help https://vk.com/masster_sniffer or https://www.instagram.com/master_sniffer/\n\nother sponsors\n\nhttps://www.instagram.com/masha_stir/\n\nhttps://www.instagram.com/kras_veta/\n")
 
     else:
         bot.send_message(message.chat.id,"Want to start the game ? Enter\ttask_1\n\nNeed help ?\nwrite \thelp")
