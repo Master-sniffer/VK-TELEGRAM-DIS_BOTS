@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+#import this #use this to see the truth
 import requests
 import json
 import random
