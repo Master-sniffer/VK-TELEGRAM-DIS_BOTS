@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-#import this #use this to see the truth
 import requests
 import json
 import random
@@ -15,7 +14,16 @@ from telebot import types
 import time
 from datetime import date, datetime
 
-TOKEN = ''
+TOKEN = ''  #!!!!!!!! хоспади, не забудь здесь вставить токен от бота, а иначе он никогда не будет нормально робить
+
+""" СВОИ ЗАМЕТКИ """
+
+#1 СТРОКА ОЧ СИЛЬНО НУЖНА. ПОЧЕМУ - ХЗ, НО ОНА НУЖНА
+
+# можно вписать task_1 == message.text (что сделает задачу сложнее ) 
+# или IN тогда , очевидно, он будет смотреть на наличие этого в коде
+#В JSON не надо вписывать "," (СТРОКА 86 , РАНЬШЕ ПОСЛЕ ЮЗЕРА СТОЯЛА ЗАПЯТАЯ) ,так как он обычно ведет запись через запятую сам (или это телега так делает , лол)
+
 
 bot=telebot.TeleBot(TOKEN) 
 
@@ -25,10 +33,8 @@ USERS=set()  # Юзаем множество вместо словаря
 @bot.message_handler(content_types=["text"]) #Бот ждет сообщение и если происходит событие - текст, он выполняет функцию
 def echo_digits(message:Message):
     
-    #REPLY to message
-    #SEND TO message.chat.id
 
-    if 'task_1' in message.text:
+    if 'task_1' in message.text: 
         bot.reply_to(message,str("Некоторые думают, что проблема лишь в контрасте. Они правы...")) 
         bot.send_photo (message.chat.id, open('gte\\tasks\\first_Task.png', 'rb'))
         print ("\nDONE\n")
@@ -73,13 +79,14 @@ def echo_digits(message:Message):
     fil = "gte\logs.json"
     with open (fil) as f: #Открытие файла  
         info=json.load(f)
+        print (info)
         print ("opening data...") #Лоигрование, что запись в файл идет
 
     if message.from_user.username in info:
         pass
     else:
         with open (fil, "w") as f:
-            data=str(info) , message.from_user.username+","
+            data=str(info) , message.from_user.username
             json.dump(data,f)
 
 """ЗДЕСЬ РАСПОЛОЖЕНА ПАНЕЛЬ УПРАВЛЕНИЯ ЗАПУСКОМ БОТА """
