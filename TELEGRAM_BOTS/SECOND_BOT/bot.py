@@ -77,17 +77,24 @@ def echo_digits(message:Message):
     #print (message.chat.id) #для получения ID
 
     fil = "gte\logs.json"
-    with open (fil, "r") as f: #Открытие файла   (забудешь про r и будет пизда)
-        info=json.load(f)
-        print (info)
-        print ("opening data...") #Лоигрование, что запись в файл идет
 
-    if message.from_user.username in info:
-        pass
-    else:
-        with open (fil, "w") as f:
-            info+=message.from_user.username +" , "  # все же тут нужна запятая, но все норм
-            json.dump(info,f)
+    if message.from_user:
+        with open (fil, "r") as f: #Открытие файла  
+            info=json.load(f)
+            print (info)
+            print ("opening data...") #Лоигрование, что запись в файл идет
+            print (message.from_user.id)
+
+        if str(message.from_user.username) in info or str(message.from_user.id) in info :
+            pass
+        else:
+            with open (fil, "w") as f:
+                if str(message.from_user.username)=="None": # на случай, если у юзера нет своего username-а
+                    info+=str(message.from_user.id)+ " , "
+                else:
+                    info+=str(message.from_user.username) +" , "
+
+                json.dump(info,f)
 
 """ЗДЕСЬ РАСПОЛОЖЕНА ПАНЕЛЬ УПРАВЛЕНИЯ ЗАПУСКОМ БОТА """
 #ОТВЕЧАЕТ ЗА ЗАПУСК 
