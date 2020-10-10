@@ -74,6 +74,37 @@ def echo_digits(message:Message):
     def task_13 (message):
         answer.append(message.text)
 
+    def task_14 (message):
+        answer.append(message.text)
+
+    def task_15 (message):
+        answer.append(message.text)
+
+    def task_16 (message):
+        answer.append(message.text)
+
+    def task_17 (message):
+        answer.append(message.text)
+
+    def task_18 (message):
+        answer.append(message.text)
+
+    def task_19 (message):
+        answer.append(message.text)
+
+    def task_20 (message):
+        answer.append(message.text)
+
+    def task_21 (message):
+        answer.append(message.text)
+
+    def task_22 (message):
+        answer.append(message.text)
+
+    def task_23 (message):
+        pass
+
+
 
     def test(task):
         if task==0:
@@ -100,7 +131,7 @@ def echo_digits(message:Message):
         elif task==3:
             markup = types.ReplyKeyboardMarkup(one_time_keyboard=True)
             markup.add('Да', 'Нет')
-            msg = bot.reply_to(message, " У меня свободное владения иностранным языком,и я готов (а) проходить на нем обучение.", reply_markup=markup)
+            msg = bot.reply_to(message, " Профессиональный рост я вижу в обязательном управлении коллективом или проектом.", reply_markup=markup)
 
             bot.register_next_step_handler(msg, task_2)
             task+=1
@@ -109,7 +140,7 @@ def echo_digits(message:Message):
         elif task==4:
             markup = types.ReplyKeyboardMarkup(one_time_keyboard=True)
             markup.add('Да', 'Нет')
-            msg = bot.reply_to(message, " У меня свободное владения иностранным языком,и я готов (а) проходить на нем обучение.", reply_markup=markup)
+            msg = bot.reply_to(message, " Я быстро разбираюсь в материале с большим количеством деталей и нюансов.", reply_markup=markup)
 
             bot.register_next_step_handler(msg, task_2)
             task+=1
@@ -118,7 +149,7 @@ def echo_digits(message:Message):
         elif task==5:
             markup = types.ReplyKeyboardMarkup(one_time_keyboard=True)
             markup.add('Да', 'Нет')
-            msg = bot.reply_to(message, " У меня свободное владения иностранным языком,и я готов (а) проходить на нем обучение.", reply_markup=markup)
+            msg = bot.reply_to(message, "Наличие четкого распорядка дня в выбираемой профессии для меня обязательно.", reply_markup=markup)
 
             bot.register_next_step_handler(msg, task_2)
             task+=1
@@ -127,7 +158,7 @@ def echo_digits(message:Message):
         elif task==6:
             markup = types.ReplyKeyboardMarkup(one_time_keyboard=True)
             markup.add('Да', 'Нет')
-            msg = bot.reply_to(message, " У меня свободное владения иностранным языком,и я готов (а) проходить на нем обучение.", reply_markup=markup)
+            msg = bot.reply_to(message, "Я иногда пишу (писал) стихи.", reply_markup=markup)
 
             bot.register_next_step_handler(msg, task_2)
             task+=1
@@ -136,7 +167,7 @@ def echo_digits(message:Message):
         elif task==7:
             markup = types.ReplyKeyboardMarkup(one_time_keyboard=True)
             markup.add('Да', 'Нет')
-            msg = bot.reply_to(message, " У меня свободное владения иностранным языком,и я готов (а) проходить на нем обучение.", reply_markup=markup)
+            msg = bot.reply_to(message, "Я быстро ориентируюсь в незнакомой местности", reply_markup=markup)
 
             bot.register_next_step_handler(msg, task_2)
             task+=1
@@ -145,7 +176,7 @@ def echo_digits(message:Message):
         elif task==8:
             markup = types.ReplyKeyboardMarkup(one_time_keyboard=True)
             markup.add('Да', 'Нет')
-            msg = bot.reply_to(message, " У меня свободное владения иностранным языком,и я готов (а) проходить на нем обучение.", reply_markup=markup)
+            msg = bot.reply_to(message, "Я очень хочу работать в зарубежной компании, работа за границей приоритетна для меня", reply_markup=markup)
 
             bot.register_next_step_handler(msg, task_2)
             task+=1
@@ -154,7 +185,7 @@ def echo_digits(message:Message):
         elif task==9:
             markup = types.ReplyKeyboardMarkup(one_time_keyboard=True)
             markup.add('Да', 'Нет')
-            msg = bot.reply_to(message, " У меня свободное владения иностранным языком,и я готов (а) проходить на нем обучение.", reply_markup=markup)
+            msg = bot.reply_to(message, "Я самостоятельно планирую свои путешествия.", reply_markup=markup)
 
             bot.register_next_step_handler(msg, task_2)
             task+=1
@@ -163,7 +194,7 @@ def echo_digits(message:Message):
         elif task==10:
             markup = types.ReplyKeyboardMarkup(one_time_keyboard=True)
             markup.add('Да', 'Нет')
-            msg = bot.reply_to(message, " У меня свободное владения иностранным языком,и я готов (а) проходить на нем обучение.", reply_markup=markup)
+            msg = bot.reply_to(message, "Постоянный контакт с людьми в выбираемой профессии для меня очень важен.", reply_markup=markup)
 
             bot.register_next_step_handler(msg, task_2)
             task+=1
@@ -172,7 +203,7 @@ def echo_digits(message:Message):
         elif task==11:
             markup = types.ReplyKeyboardMarkup(one_time_keyboard=True)
             markup.add('Да', 'Нет')
-            msg = bot.reply_to(message, " У меня свободное владения иностранным языком,и я готов (а) проходить на нем обучение.", reply_markup=markup)
+            msg = bot.reply_to(message, " В профессиональной деятельности, я без труда буду использовать язык символов, графиков и схем. ", reply_markup=markup)
 
             bot.register_next_step_handler(msg, task_2)
             task+=1
@@ -181,7 +212,7 @@ def echo_digits(message:Message):
         elif task==12:
             markup = types.ReplyKeyboardMarkup(one_time_keyboard=True)
             markup.add('Да', 'Нет')
-            msg = bot.reply_to(message, " У меня свободное владения иностранным языком,и я готов (а) проходить на нем обучение.", reply_markup=markup)
+            msg = bot.reply_to(message, ". Для меня важно работать в большой организации, где можно подняться по карьерной лестнице. ", reply_markup=markup)
 
             bot.register_next_step_handler(msg, task_2)
             task+=1
@@ -190,7 +221,7 @@ def echo_digits(message:Message):
         elif task==13:
             markup = types.ReplyKeyboardMarkup(one_time_keyboard=True)
             markup.add('Да', 'Нет')
-            msg = bot.reply_to(message, " У меня свободное владения иностранным языком,и я готов (а) проходить на нем обучение.", reply_markup=markup)
+            msg = bot.reply_to(message, "Работа с большим количеством цифровых данных будет интересна для меня.", reply_markup=markup)
 
             bot.register_next_step_handler(msg, task_2)
             task+=1
@@ -199,7 +230,7 @@ def echo_digits(message:Message):
         elif task==14:
             markup = types.ReplyKeyboardMarkup(one_time_keyboard=True)
             markup.add('Да', 'Нет')
-            msg = bot.reply_to(message, " У меня свободное владения иностранным языком,и я готов (а) проходить на нем обучение.", reply_markup=markup)
+            msg = bot.reply_to(message, "Я хочу, чтобы профессия была связана с созданием чего-то нового.", reply_markup=markup)
 
             bot.register_next_step_handler(msg, task_2)
             task+=1
@@ -208,7 +239,7 @@ def echo_digits(message:Message):
         elif task==15:
             markup = types.ReplyKeyboardMarkup(one_time_keyboard=True)
             markup.add('Да', 'Нет')
-            msg = bot.reply_to(message, " У меня свободное владения иностранным языком,и я готов (а) проходить на нем обучение.", reply_markup=markup)
+            msg = bot.reply_to(message, "Мне нравится осуществлять контроль и проверку чужой деятельности.", reply_markup=markup)
 
             bot.register_next_step_handler(msg, task_2)
             task+=1
@@ -217,7 +248,7 @@ def echo_digits(message:Message):
         elif task==16:
             markup = types.ReplyKeyboardMarkup(one_time_keyboard=True)
             markup.add('Да', 'Нет')
-            msg = bot.reply_to(message, " У меня свободное владения иностранным языком,и я готов (а) проходить на нем обучение.", reply_markup=markup)
+            msg = bot.reply_to(message, "Я хочу, чтобы моя профессия была связана с международным партнерством.", reply_markup=markup)
 
             bot.register_next_step_handler(msg, task_2)
             task+=1
@@ -278,6 +309,11 @@ def echo_digits(message:Message):
             test(task)
         
 
+        elif task==23:
+            msg = bot.send_message(message.chat.id, "Давай узнаем твои результаты")
+            bot.register_next_step_handler(msg, task_23)
+        
+
 
 
 
@@ -299,7 +335,7 @@ def echo_digits(message:Message):
         task=firs[ID]["task"] # нужен для номера задания
         answer=firs[ID]["answers"]
 
-        if task==24:
+        if task==23:
             pass
         else:
             test(task)
