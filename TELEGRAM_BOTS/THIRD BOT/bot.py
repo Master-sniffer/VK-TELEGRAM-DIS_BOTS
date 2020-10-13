@@ -40,6 +40,7 @@ def echo_digits(message:Message):
     
     def task_2 (message):
         answer.append(message.text)
+        print ("we are here")
 
     def task_3 (message):
         answer.append(message.text)
@@ -55,6 +56,7 @@ def echo_digits(message:Message):
 
     def task_7 (message):
         answer.append(message.text)
+        print ("and here are here")
 
     def task_8 (message):
         answer.append(message.text)
@@ -330,8 +332,8 @@ def echo_digits(message:Message):
             pass # думаю здесь ничего не надо вкючать
         else:
             with open (fap, "w") as f:
-                firs[ID]["task"]=0
-                firs[ID]["answers"]=[]
+                firs[ID]={"task":0, "answers":[]}
+                print (firs)
                 json.dump(firs,f)
         
         task=firs[ID]["task"] # нужен для номера задания
@@ -342,17 +344,6 @@ def echo_digits(message:Message):
         else:
             test(task)
         
-        
-        
-        
-        
-        
-
-    
-
-
-
-
 
 """ЗДЕСЬ РАСПОЛОЖЕНА ПАНЕЛЬ УПРАВЛЕНИЯ ЗАПУСКОМ БОТА """
 #ОТВЕЧАЕТ ЗА ЗАПУСК 
