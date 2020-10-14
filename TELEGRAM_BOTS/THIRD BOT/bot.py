@@ -14,7 +14,7 @@ from telebot import types
 import time
 from datetime import date, datetime
 
-TOKEN = '1316987589:AAHBZrFcJ4Lt6Zwvt1ObVJeEK7XKBdNI4yE' 
+TOKEN = '' 
 
 fap="tut_rabota/logs.json"
 other_faps=["kvad.jpg","trug.jpg","krug.png","priamoug.jpg","spiral"]
