@@ -40,11 +40,12 @@ def Welcome_Message(message):
     # photo = open('/tmp/photo.png', 'rb')
     # tb.send_photo(chat_id, photo)
 
-    for i in other_faps:
-        bot.send_photo(message.chat.id, photo=open(f'tut_rabota/tasks/{i}', 'rb'))
+
 
     msg = bot.send_message(message.chat.id, "Выберите, пожалуйста, фигуру, глядя на которую вы могли сказать это – я" , reply_markup=markup)
     # Добавить сюда вывод медиа файлов
+    for i in other_faps:
+        bot.send_photo(message.chat.id, photo=open(f'tut_rabota/tasks/{i}', 'rb'))
     bot.register_next_step_handler(msg, task_0 , spisok)
 
 
@@ -72,12 +73,14 @@ def task_0(message, spisok):
         uno=['kvad.jpg', 'trug.jpg', "krug.png"]
         markup.add('Квадрат', 'Треугольник', "Круг")
     
-    for i in uno:
-        bot.send_photo(message.chat.id, photo=open(f'tut_rabota/tasks/{i}', 'rb'))
+
 
     msg = bot.reply_to(message, "2. которая наиболее Вам подходит во вторую очередь." ,  reply_markup=markup)
     # Добавить сюда вывод медиа файлов
-    
+
+    for i in uno:
+        bot.send_photo(message.chat.id, photo=open(f'tut_rabota/tasks/{i}', 'rb'))
+
     bot.register_next_step_handler(msg, task_1 , spisok, times)
 
 def task_1(message, spisok, times):
@@ -263,14 +266,30 @@ def loging (message, spisok):
         firs=json.load(f)
     
     if ID in firs:
-        firs[ID]["answers"]=spisok
+        print (spisok)
+        print ("alah")
+        print(firs)
+        firs[ID]={"answers":spisok}
     
     else :
-        firs[ID]={"task":0, "answers":spisok}
+        firs[ID]={"answers":spisok}
     
     with open (fap, "w") as f:
         json.dump(firs,f)
 
+
+@bot.message_handler(commands=['help']) # /help
+def sos(message):
+    bot.send_message(message.chat.id, "Нужна помощь - пиши в вк или инст !\nВК - https://vk.com/masster_sniffer \n\nInst - https://www.instagram.com/master_sniffer/")
+
+@bot.edited_message_handler(content_types=["text"])
+@bot.message_handler(content_types=["text"])
+def help(message:Message):
+    markup = types.ReplyKeyboardMarkup()
+    itembtnv = types.KeyboardButton('/help')
+    itembtna = types.KeyboardButton('/start')
+    markup.row(itembtna, itembtnv)
+    bot.send_message(message.chat.id, "Чтобы начать опрос нажми start\n\nЧтобы получить помощь пишите help", reply_markup=markup)
 
 
         
