@@ -17,7 +17,7 @@ from datetime import date, datetime
 TOKEN = '' 
 
 fap="tut_rabota/logs.json"
-other_faps=["kvad.jpg","trug.jpg","krug.png","priamoug.jpg","spiral"]
+other_faps=["kvad.jpg","trug.jpg","krug.png","priamoug.jpg"]
 
 bot=telebot.TeleBot(TOKEN) 
 
@@ -30,12 +30,19 @@ bot=telebot.TeleBot(TOKEN)
 
 #@bot.edited_message_handler(content_types=["text"])
 #@bot.message_handler(content_types=["text"]) #Бот ждет сообщение и если происходит событие - текст, он выполняет функцию
-@bot.message_handler(commands=['start'])
+@bot.message_handler(commands=['start']) # /start
 def Welcome_Message(message):
     spisok=[]
     bot.send_message(message.chat.id, "Привет ! Сегодня мы будем решать кто ты по жизни !\n")
     markup = types.ReplyKeyboardMarkup(one_time_keyboard=True)
-    markup.add('Квадрат', 'Треугольник', "Круг", "Спираль", "Прямоугольник")
+    markup.add('Квадрат', 'Треугольник', "Круг", "Прямоугольник")
+
+    # photo = open('/tmp/photo.png', 'rb')
+    # tb.send_photo(chat_id, photo)
+
+    for i in other_faps:
+        bot.send_photo(message.chat.id, photo=open(f'tut_rabota/tasks/{i}', 'rb'))
+
     msg = bot.send_message(message.chat.id, "Выберите, пожалуйста, фигуру, глядя на которую вы могли сказать это – я" , reply_markup=markup)
     # Добавить сюда вывод медиа файлов
     bot.register_next_step_handler(msg, task_0 , spisok)
@@ -49,19 +56,24 @@ def task_0(message, spisok):
     print (spisok)
     markup = types.ReplyKeyboardMarkup(one_time_keyboard=True)
     if spisok[0] == "Квадрат":
-        markup.add('Треугольник', "Круг", "Спираль", "Прямоугольник")
+        uno=['trug.jpg', "krug.png", "priamoug.jpg"]  
+        markup.add('Треугольник', "Круг", "Прямоугольник")
     
     elif spisok[0]=="Треугольник":
-        markup.add('Квадрат', "Круг", "Спираль", "Прямоугольник")
+        uno=['kvad.jpg', "krug.png", "priamoug.jpg"]
+        markup.add('Квадрат', "Круг", "Прямоугольник")
     
     elif spisok[0]=="Круг":
-        markup.add('Квадрат', 'Треугольник', "Спираль", "Прямоугольник")
+        uno=['kvad.jpg', 'trug.jpg', "priamoug.jpg"]
+        markup.add('Квадрат', 'Треугольник', "Прямоугольник")
     
-    elif spisok[0]=="Спираль":
-        markup.add('Квадрат', 'Треугольник', "Круг", "Прямоугольник")
 
     elif spisok[0]=="Прямоугольник":
-        markup.add('Квадрат', 'Треугольник', "Круг", "Спираль")
+        uno=['kvad.jpg', 'trug.jpg', "krug.png"]
+        markup.add('Квадрат', 'Треугольник', "Круг")
+    
+    for i in uno:
+        bot.send_photo(message.chat.id, photo=open(f'tut_rabota/tasks/{i}', 'rb'))
 
     msg = bot.reply_to(message, "2. которая наиболее Вам подходит во вторую очередь." ,  reply_markup=markup)
     # Добавить сюда вывод медиа файлов
@@ -167,78 +179,78 @@ def task_1(message, spisok, times):
         da="Да"
 
         if (spisok[0] == "Треугольник" and spisok[1] == "Квадрат") and ((spisok[2]==da and spisok[4]==da and spisok[8]==da and spisok[12]==da and spisok[17]==da  ) or (spisok[4]==da and spisok[12]==da and spisok[13]==da and spisok[16]==da and spisok[18]==da)):
-            bot.send_message(message.chat.id, "1")
+            bot.send_message(message.chat.id, "Локация: м. Аэропорт\n\nФакультет: Международных экономических отношений")
             loging (message, spisok)
         
-        #
+        # 2
 
         elif (spisok[0] == "Квадрат" and spisok[1] == "Треугольник") and spisok[4]==da and spisok[5]==da and spisok[7]==da and spisok[15]==da and spisok[18]==da   :
-            bot.send_message(message.chat.id, "2")
+            bot.send_message(message.chat.id, "Локация: м. Семеновская\n\nФакультет: Информационных технологий и анализа больших данных")
             loging (message, spisok)
 
         elif (spisok[0] == "Квадрат" and spisok[1] == "Круг") and spisok[5]==da and spisok[11]==da and spisok[13]==da and spisok[14]==da and spisok[22]==da   :
-            bot.send_message(message.chat.id, "2")
+            bot.send_message(message.chat.id, "Локация: м. Семеновская\n\nФакультет: Информационных технологий и анализа больших данных")
             loging (message, spisok)
         
-        #
+        # 3
 
         elif (spisok[0] == "Треугольник" and spisok[1] == "Квадрат") and spisok[3]==da and spisok[5]==da and spisok[12]==da and spisok[13]==da and spisok[15]==da   :
-            bot.send_message(message.chat.id, "3")
+            bot.send_message(message.chat.id, "Локация: м. Динамо\n\nФакультет: «Высшая школа управления»")
             loging (message, spisok)
         
         elif (spisok[0] == "Треугольник" and spisok[1] == "Круг") and spisok[3]==da and spisok[6]==da and spisok[10]==da and spisok[15]==da and spisok[17]==da   :
-            bot.send_message(message.chat.id, "3")
+            bot.send_message(message.chat.id, "Локация: м. Динамо\n\nФакультет: «Высшая школа управления»")
             loging (message, spisok)
         
-        #
+        # 4
 
         elif (spisok[0] == "Квадрат" and spisok[1] == "Треугольник") and spisok[4]==da and spisok[5]==da and spisok[13]==da and spisok[15]==da and spisok[20]==da   :
-            bot.send_message(message.chat.id, "4")
+            bot.send_message(message.chat.id, "Локация: м. Динамо\n\nФакультет: Налогов, аудита и бизнес- анализа")
             loging (message, spisok)
         
         elif (spisok[0] == "Квадрат" and spisok[1] == "Треугольник") and spisok[4]==da and spisok[5]==da and spisok[11]==da and spisok[13]==da and spisok[15]==da   :
-            bot.send_message(message.chat.id, "4")
+            bot.send_message(message.chat.id, "Локация: м. Динамо\n\nФакультет: Налогов, аудита и бизнес- анализа")
             loging (message, spisok)
         
-        #
+        # 5
 
         elif (spisok[0] == "Квадрат" and spisok[1] == "Треугольник") and spisok[4]==da and spisok[5]==da and spisok[12]==da and spisok[13]==da and spisok[15]==da   :
-            bot.send_message(message.chat.id, "5")
+            bot.send_message(message.chat.id, "Локация: м. Китай-город\n\nФакультет: Финансовый")
             loging (message, spisok)
         
         elif (spisok[0] == "Треугольник" and spisok[1] == "Квадрат") and spisok[4]==da and spisok[7]==da and spisok[17]==da and spisok[18]==da and spisok[21]==da   :
-            bot.send_message(message.chat.id, "5")
+            bot.send_message(message.chat.id, "Локация: м. Китай-город\n\nФакультет: Финансовый")
             loging (message, spisok)
         
-        #
+        # 6
 
         elif (spisok[0] == "Треугольник" and spisok[1] == "Круг") and spisok[4]==da and spisok[5]==da and spisok[7]==da and spisok[16]==da and spisok[19]==da   :
-            bot.send_message(message.chat.id, "6")
+            bot.send_message(message.chat.id, "Локация: м. ВДНХ\n\nФакультет: Экономики и бизнеса")
             loging (message, spisok)
 
         elif (spisok[0] == "Квадрат" and spisok[1] == "Треугольник") and spisok[4]==da and spisok[5]==da and spisok[12]==da and spisok[13]==da and spisok[20]==da   :
-            bot.send_message(message.chat.id, "6")
+            bot.send_message(message.chat.id, "Локация: м. ВДНХ\n\nФакультет: Экономики и бизнеса")
             loging (message, spisok)
 
         elif (spisok[0] == "Треугольник" and spisok[1] == "Круг") and spisok[3]==da and spisok[9]==da and spisok[10]==da and spisok[16]==da and spisok[20]==da   :
-            bot.send_message(message.chat.id, "6")
+            bot.send_message(message.chat.id, "Локация: м. ВДНХ\n\nФакультет: Экономики и бизнеса")
             loging (message, spisok)
 
-        #
+        # 7
 
         elif (spisok[0] == "Треугольник" and spisok[1] == "Круг") and spisok[6]==da and spisok[10]==da and spisok[18]==da and spisok[20]==da and spisok[21]==da   :
-            bot.send_message(message.chat.id, "7")
+            bot.send_message(message.chat.id, "Локация: м. Аэропорт\n\nФакультет: Социальных наук и массовых коммуникаций")
             loging (message, spisok)
         
-        #
+        # 8
 
         elif (spisok[0] == "Треугольник" and spisok[1] == "Круг") and spisok[3]==da and spisok[10]==da and spisok[18]==da and spisok[20]==da and spisok[21]==da   :
-            bot.send_message(message.chat.id, "8")
+            bot.send_message(message.chat.id, "Локация: м. Рязанский пр-т\n\nФакультет: Юридический")
             loging (message, spisok)
             
 
         else :
-            bot.send_message(message.chat.id, "HM, SOMETHING WENT WRONG. Try typing /start and complete the whole test again")
+            bot.send_message(message.chat.id, "Сразу видно, что ты смышленный малый.\nПопробуй посмотреть все факультеты и реши, какой тебе больше нравится:\nЮридический\nСоциальных наук и массовых коммуникаций\nЭкономики и бизнеса\nФинансовый\nНалогов, аудита и бизнес- анализа\nИнформационных технологий и анализа больших данных\nМеждународных экономических отношений")
             loging (message, spisok)
         
 
